@@ -1,0 +1,18 @@
+{
+	"name": "Node.js & TypeScript",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/app",
+	"mounts": [
+		"source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind,consistency=cached"
+	],
+	"postCreateCommand": "npm install -g @anthropic-ai/claude-code && npm install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"esbenp.prettier-vscode",
+				"humao.rest-client"
+			]
+		}
+	}
+}
