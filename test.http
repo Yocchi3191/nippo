@@ -1,0 +1,56 @@
+@baseUrl = http://localhost:3000
+
+### 追加
+POST {{baseUrl}}/nippo
+Content-Type: application/json
+
+{
+  "title": "今日の日報",
+  "content": "今日はAPIを実装しました"
+}
+
+### 一括追加
+POST {{baseUrl}}/nippo/bulk
+Content-Type: application/json
+
+[
+  { "title": "日報1", "content": "内容1" },
+  { "title": "日報2", "content": "内容2" }
+]
+
+### 一覧取得
+GET {{baseUrl}}/nippo
+
+### 詳細取得
+GET {{baseUrl}}/nippo/1
+
+### 更新
+PUT {{baseUrl}}/nippo/1
+Content-Type: application/json
+
+{
+  "title": "更新タイトル",
+  "content": "更新内容"
+}
+
+### 削除
+DELETE {{baseUrl}}/nippo/1
+
+### 一括削除
+DELETE {{baseUrl}}/nippo/bulk
+Content-Type: application/json
+
+{
+  "ids": [2, 3]
+}
+
+### 復元
+POST {{baseUrl}}/nippo/1/restore
+
+### 一括復元
+POST {{baseUrl}}/nippo/bulk/restore
+Content-Type: application/json
+
+{
+  "ids": [2, 3]
+}
