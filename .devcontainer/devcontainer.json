@@ -7,7 +7,7 @@
 		"source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind,consistency=cached",
 		"source=${localEnv:HOME}/.ssh,target=/tmp/wsl-ssh,type=bind,readonly,consistency=cached"
 	],
-	"postCreateCommand": "cp -r /tmp/wsl-ssh/. /root/.ssh && chown -R root:root /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && git config --global --add safe.directory /app && npm install -g @anthropic-ai/claude-code && npm install",
+	"postCreateCommand": "cp -r /tmp/wsl-ssh/. /root/.ssh && chown -R root:root /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && git config --global --add safe.directory /app && npm install -g @anthropic-ai/claude-code && cd /app/backend && npm install",
 	"customizations": {
 		"vscode": {
 			"extensions": [
