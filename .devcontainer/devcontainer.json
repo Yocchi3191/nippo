@@ -11,7 +11,8 @@
 		"vscode": {
 			"extensions": [
 				"esbenp.prettier-vscode",
-				"humao.rest-client"
+				"humao.rest-client",
+				"Anthropic.claude-code"
 			]
 		}
 	}
