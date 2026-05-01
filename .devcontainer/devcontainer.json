@@ -4,9 +4,10 @@
 	"service": "app",
 	"workspaceFolder": "/app",
 	"mounts": [
-		"source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind,consistency=cached"
+		"source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.ssh,target=/tmp/wsl-ssh,type=bind,readonly,consistency=cached"
 	],
-	"postCreateCommand": "npm install -g @anthropic-ai/claude-code && npm install",
+	"postCreateCommand": "cp -r /tmp/wsl-ssh/. /root/.ssh && chown -R root:root /root/.ssh && chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && npm install -g @anthropic-ai/claude-code && npm install",
 	"customizations": {
 		"vscode": {
 			"extensions": [
