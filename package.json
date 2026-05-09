@@ -1,0 +1,22 @@
+{
+  "name": "nippo",
+  "version": "1.0.0",
+  "description": "Nippoとは日報である",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "db:studio": "npm run db:studio --prefix backend",
+    "dev": "npm run dev:frontend & npm run dev:backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.private:Yocchi3191/nippo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
