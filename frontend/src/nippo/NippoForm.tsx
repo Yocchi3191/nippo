@@ -19,10 +19,20 @@ export function NippoForm({ onSubmit }: Props) {
   } // fetchというが、要するにPOSTメソッドをcurlしてる
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} />
-      <button type="submit">投稿</button>
-    </form>
+    <>
+      <h2>にっぽーを投稿する</h2>
+      <form onSubmit={handleSubmit}>
+        <p>タイトル</p>
+        <input value={title} onChange={(e) => setTitle(e.target.value)} />
+        <p>内容</p>
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <p>
+          <button type="submit">投稿</button>
+        </p>
+      </form>
+    </>
   )
 }

@@ -27,7 +27,7 @@ export function NippoItem({ nippo, onRefresh }: Props) {
   }
 
   return (
-    <li>
+    <div>
       <p>
         <input value={title} onChange={(e) => setTitle(e.target.value)} />
       </p>
@@ -41,6 +41,6 @@ export function NippoItem({ nippo, onRefresh }: Props) {
         更新
       </button>
       <button onClick={() => handleDelete(nippo.id)}>削除</button>
-    </li>
+    </div>
   )
 }
