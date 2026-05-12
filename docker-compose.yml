@@ -1,26 +1,13 @@
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:changeme@db:5432/nippo
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
-
-  db:
-    image: postgres:16-alpine
-    env_file:
-      - .env
+  nippo:
+    build:
+      context: ..
+      dockerfile: Dockerfile.dev
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  postgres_data:
+      - ..:/nippo
+      - /nippo/backend/node_modules
+    ports:
+      - '3000:3000'
+    env_file:
+      - ../.env
+    command: npm run dev

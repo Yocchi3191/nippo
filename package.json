@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Nippoとは日報である",
   "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "directories": {
     "doc": "doc"
   },
@@ -10,7 +14,17 @@
     "dev:frontend": "npm run dev --prefix frontend",
     "dev:backend": "npm run dev --prefix backend",
     "db:studio": "npm run db:studio --prefix backend",
-    "dev": "npm run dev:frontend & npm run dev:backend"
+    "dev": "npm run dev:frontend & npm run dev:backend",
+    "test:backend": "npm run test -w backend",
+    "test:backend:watch": "npm run test:watch -w backend"
+  },
+  "dependencies": {
+    "hono": "^4.12.14",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "vitest": "^4.1.5"
   },
   "repository": {
     "type": "git",
