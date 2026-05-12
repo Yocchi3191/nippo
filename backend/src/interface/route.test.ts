@@ -17,18 +17,23 @@ describe('ルーティングのテスト', () => {
     repository = new SqliteNippoRepository(db)
   })
 
-  it('GET /nippo', async () => {
+  it('全件取得', async () => {
     const res = await app.request('/nippo', {}, { repository })
     expect(res.status).toBe(200)
     const rows = await res.json()
     expect(rows).toHaveLength(2)
   })
 
-  it('GET /nippo/:id 正常系', async () => {
+  it('id検索 正常系', async () => {
     const res = await app.request('/nippo/1', {}, { repository })
     expect(res.status).toBe(200)
     const row = await res.json()
     expect(row.title).toBe(testData[0].title)
+  })
+
+  it('id検索 異常系', async () => {
+    const res = await app.request('/nippo/999', {}, { repository })
+    expect(res.status).toBe(404)
   })
 })
 

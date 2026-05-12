@@ -1,13 +1,13 @@
 services:
   nippo:
     build:
-      context: ..
+      context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - ..:/nippo
+      - .:/nippo
       - /nippo/backend/node_modules
     ports:
       - '3000:3000'
     env_file:
-      - ../.env
+      - .env
     command: npm run dev
