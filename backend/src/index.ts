@@ -1,5 +1,8 @@
 import { serve } from '@hono/node-server'
-import { app } from './interface/app.js'
+import { createApp } from './interface/app.js'
+import { db } from './infrastructure/db.js'
+
+const app = createApp(db)
 
 serve(
   {

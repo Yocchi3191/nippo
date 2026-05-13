@@ -4,7 +4,4 @@ export type NippoEnv = {
   Variables: {
     repository: NippoRepository
   }
-  Bindings: {
-    repository: NippoRepository
-  }
 }
