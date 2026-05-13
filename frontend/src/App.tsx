@@ -1,31 +1,22 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { NippoItem } from './nippo/NippoItem'
-import { NippoForm } from './nippo/NippoForm'
-import { hc } from 'hono/client'
-import type { AppType } from '../../backend/src/app'
-
-export const client = hc<AppType>('http://localhost:3000')
-
-export type Nippo = {
-  id: number
-  title: string
-  content: string
-  createdAt: string
-}
+import { NippoItem } from './components/NippoItem'
+import { NippoForm } from './components/NippoForm'
+import { client } from './client'
+import type { Nippo } from './schema/Nippo'
 
 function App() {
   const [nippos, setNippos] = useState<Nippo[]>([])
+  const [refreshKey, setRefreshKey] = useState(0)
 
-  const fetchNippos = async () => {
-    const res = await client.nippo.$get()
-    const data = await res.json()
-    setNippos(data)
-  } // 日報データをすべて取ってきてstateにセット
+  const fetchNippos = () => setRefreshKey((k) => k + 1)
 
   useEffect(() => {
-    fetchNippos()
-  }, []) // 画面更新時1回だけ日報データをfetch
+    client.nippo
+      .$get()
+      .then((res) => res.json())
+      .then((data) => setNippos(data))
+  }, [refreshKey])
 
   return (
     <>
@@ -33,7 +24,7 @@ function App() {
       <NippoForm onSubmit={fetchNippos} />
       <h2>にっぽー一覧</h2>
       {nippos.map((nippo) => (
-        <NippoItem key={nippo.id} nippo={nippo} onRefresh={fetchNippos} />
+        <NippoItem key={nippo.id} nippo={nippo} />
       ))}
     </>
   )
