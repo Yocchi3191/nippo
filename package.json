@@ -16,7 +16,9 @@
     "db:studio": "npm run db:studio --prefix backend",
     "dev": "npm run dev:frontend & npm run dev:backend",
     "test:backend": "npm run test -w backend",
-    "test:backend:watch": "npm run test:watch -w backend"
+    "test:backend:watch": "npm run test:watch -w backend",
+    "test:frontend": "npm run test -w frontend",
+    "test:frontend:watch": "npm run test:watch -w frontend"
   },
   "dependencies": {
     "hono": "^4.12.14",
