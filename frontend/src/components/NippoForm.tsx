@@ -1,22 +1,22 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { client } from '../client'
 
-type NippoFormProps = {
-  onSubmit: () => void
-}
-
-export function NippoForm({ onSubmit }: NippoFormProps) {
+export function NippoForm() {
+  const queryClient = useQueryClient()
+  const { mutateAsync } = useMutation({
+    mutationFn: (data: { title: string; content: string }) => client.nippo.$post({ json: data }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['nippos'] }),
+  })
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
     const data = new FormData(form)
-    await client.nippo.$post({
-      json: {
-        title: data.get('title') as string,
-        content: data.get('content') as string,
-      },
-    })
+    const input = {
+      title: data.get('title') as string,
+      content: data.get('content') as string,
+    }
+    await mutateAsync(input)
     form.reset()
-    onSubmit()
   }
 
   return (
