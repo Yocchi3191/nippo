@@ -10,11 +10,6 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  server: {
-    proxy: {
-      '/nippo': 'http://localhost:3000',
-    },
-  },
   test: {
     environment: 'jsdom',
     globals: true,
