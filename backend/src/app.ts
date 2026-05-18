@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import { nippoRoute } from './route.js'
-import type { NippoEnv } from './NippoEnv.js'
+import { nippoRoute } from './nippo/interface/route.js'
+import type { NippoEnv } from './nippo/interface/NippoEnv.js'
 import { BetterSQLite3Database } from 'drizzle-orm/better-sqlite3'
-import { SqliteNippoRepository } from '../infrastructure/sqliteNippoRepository.js'
+import { SqliteNippoRepository } from './nippo/infrastructure/sqliteNippoRepository.js'
 
 export const createApp = (db: BetterSQLite3Database<any>) => {
   const repo = new SqliteNippoRepository(db)
